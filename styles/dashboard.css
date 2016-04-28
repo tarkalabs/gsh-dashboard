@@ -9,7 +9,6 @@ h1.header {
 }
 .panel {
   margin: 1em;
-  min-height: 350px;
 }
 .panel h4 {
   text-align: center;
