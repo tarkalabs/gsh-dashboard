@@ -1,14 +1,20 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
+h1.header {
+  text-align: center;
+}
 .content {
   background-color: #2F81B7;
 }
 .panel {
   margin: 1em;
-  min-height: 380px;
+  min-height: 350px;
 }
 .panel h4 {
   text-align: center;
 }
 
+.filters {
+  font-size: 2em;
+}

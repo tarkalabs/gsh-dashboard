@@ -10,8 +10,12 @@ $(function () {
     }
     var opts = {
       xAxis: {
+        categories: _.map(current, function(e) { return e.date.format("DD/MMM"); }),
         min: 0,
         max: current.length
+      },
+      title: {
+        text: "Energy - Trends"
       },
       yAxis: {
         min: 0
@@ -130,8 +134,9 @@ $(function () {
   Highcharts.setOptions({
     chart: {
       style: {
-        fontFamily: 'Roboto, sans-serif'
-      }
+        fontFamily: 'Roboto, sans-serif',
+      },
+      height: 300
     }
   });
   function changeData(data, prev) {
