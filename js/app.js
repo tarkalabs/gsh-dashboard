@@ -152,6 +152,18 @@ $(function () {
     $("#energy-trend").highcharts(
       makeBarParams(data, prev, "energy_consumption")
     );
+    var curCo2Val = _.reduce(_.pluck(data,"co2"), function(m,n) { return m+n; }, 0);
+    var prevCo2Val = undefined;
+    if(prev) {
+      prevCo2Val = _.reduce(_.pluck(prev,"co2"), function(m,n) { return m+n; }, 0);
+    }
+    $(".co2-details .current .value").text(curCo2Val + " tons");
+    if(prev) {
+      $(".co2-details .previous").show();
+      $(".co2-details .previous .value").text(prevCo2Val + " tons");
+    } else {
+      $(".co2-details .previous").hide();
+    }
   }
   $("#period").on("change", function() {
     var current = dataByMonth[$(this).val()]
