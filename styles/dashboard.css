@@ -17,3 +17,15 @@ h1.header {
 .filters {
   font-size: 2em;
 }
+
+.panel.co2 .img {
+  text-align: center;
+}
+.co2-details .current, .co2-details .previous {
+  color: #555;
+  font-weight: 300;
+}
+
+.co2-details .current .value {
+  font-size: larger;
+}

@@ -134,6 +134,12 @@ function extractDates(data) {
     return _.extend(_.clone(e),{date: moment(e.date, "dd/MM/yyyy")});
   });
 }
+function addCO2(data) {
+  return _.map(data, function(e) {
+    var val = 400 + Math.round(200*Math.random())
+    return _.extend(_.clone(e), {co2: val});
+  })
+}
 
 function bucketByMonth(data) {
   return _.groupBy(data, function(e) {
@@ -150,11 +156,14 @@ function statsFor(data, column) {
   var avg = sum/count;
   return {max: max, min: min, avg: avg, sum: sum, count: count, avg: avg};
 }
+
 var transform = _.compose(
   _.partial(makeNumber, "energy_consumption"),
   _.partial(makeNumber, "feed_water_flow"),
   _.partial(makeNumber, "coal_consumption_boiler"),
+  addCO2,
   extractDates
 );
+
 window.data = transform(raw_data);
 window.dataByMonth = bucketByMonth(window.data);
