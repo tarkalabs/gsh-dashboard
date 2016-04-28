@@ -21,11 +21,20 @@ h1.header {
 .panel.co2 .img {
   text-align: center;
 }
+.co2-details {
+  text-align: center;
+}
 .co2-details .current, .co2-details .previous {
-  color: #555;
+  color: #777;
   font-weight: 300;
 }
 
 .co2-details .current .value {
+  color: #333;
+  font-size: larger;
+}
+
+.co2-details .previous .value {
+  color: #333;
   font-size: larger;
 }
