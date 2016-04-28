@@ -1,6 +1,36 @@
 $(function () {
-  let month = 0;
 
+  function makeBarParams(current, previous, column) {
+    var currentData = _.pluck(current, column);
+    var prevData, prevStats = undefined;
+    var currentStats = statsFor(current, column);
+    if(previous){
+      prevStats = statsFor(previous, column);
+      prevData = _.pluck(previous, column);
+    }
+    var opts = {
+      xAxis: {
+        min: 0,
+        max: current.length
+      },
+      yAxis: {
+        min: 0
+      },
+      series: [{
+        type: "column",
+        name: "current",
+        data: currentData
+      }]
+    }
+    if(previous) {
+      opts.series.push({
+        type: "line",
+        name: "previous",
+        data: prevData
+      });
+    }
+    return opts;
+  }
   function makeGaugeParams(title,unit,stats) {
     var range = stats.max - stats.min;
     return {
@@ -88,7 +118,7 @@ $(function () {
       },
 
       series: [{
-        name: 'title',
+        name: title,
         data: [Math.round(stats.avg)],
         tooltip: {
           valueSuffix: ' ' + unit
@@ -104,7 +134,24 @@ $(function () {
       }
     }
   });
-  $('#energy-gauge').highcharts(makeGaugeParams("Energy", "kWH", statsFor(window.data, "energy_consumption")));
-  $('#water-gauge').highcharts(makeGaugeParams("Water", "liters", statsFor(window.data, "feed_water_flow")));
-  $('#coal-gauge').highcharts(makeGaugeParams("Coal", "tons", statsFor(window.data, "coal_consumption_boiler")));
+  function changeData(data, prev) {
+    $('#energy-gauge').highcharts(
+      makeGaugeParams("Energy", "kWH", statsFor(data, "energy_consumption"))
+    );
+    $('#water-gauge').highcharts(
+      makeGaugeParams("Water", "liters", statsFor(data, "feed_water_flow"))
+    );
+    $('#coal-gauge').highcharts(
+      makeGaugeParams("Coal", "tons", statsFor(data, "coal_consumption_boiler"))
+    );
+    $("#energy-trend").highcharts(
+      makeBarParams(data, prev, "energy_consumption")
+    );
+  }
+  $("#period").on("change", function() {
+    var current = dataByMonth[$(this).val()]
+    var prev = dataByMonth[String(parseInt($(this).val())-1)]
+    changeData(current, prev);
+  });
+  changeData(dataByMonth["0"]);
 });

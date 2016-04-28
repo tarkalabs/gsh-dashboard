@@ -142,7 +142,7 @@ function bucketByMonth(data) {
 }
 
 function statsFor(data, column) {
-  var values = _.pluck(data, column);
+  var values = _.pluck(data, column).filter(function(c) { return c > 0; });
   var min = _.min(values);
   var max = _.max(values);
   var sum = _.reduce(values, function(memo, num) { return memo + num; }, 0);

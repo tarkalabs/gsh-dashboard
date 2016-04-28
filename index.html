@@ -11,14 +11,55 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-2"><img src="images/gshlogo-main.png"/></div>
-        <div class="col-sm-10">
-          <h1>GSH Energy Dashboard</h1>
+        <div class="col-sm-8">
+          <h1>Rachael Energy Dashboard</h1>
         </div>
+      <div class="col-sm-2">
+        <select name="plant" id="plant">
+          <option value="krpl" selected>KRPL, Chennai</option>
+        </select>
+        <select name="period" id="period">
+          <option value="0">Jan 2016</option>
+          <option value="1">Feb 2016</option>
+          <option value="2">Mar 2016</option>
+          <option value="3">Apr 2016</option>
+        </select>
       </div>
-      <div class="row">
-        <div class="col-sm-4" id="energy-gauge"></div>
-        <div class="col-sm-4" id="water-gauge"></div>
-        <div class="col-sm-4" id="coal-gauge"></div>
+      </div>
+    </div>
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="panel">
+                <h4>Facility - KRPL Plant, Chennai</h4>
+                <img src="images/plant.png" width="100%"/>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="panel">
+                <div id="energy-gauge"></div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="panel">
+                <div id="water-gauge"></div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="panel">
+                <div id="coal-gauge"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="panel">
+                <div id="energy-trend"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
       <script src="https://code.highcharts.com/highcharts.js"></script>
