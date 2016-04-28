@@ -158,5 +158,5 @@ $(function () {
     var prev = dataByMonth[String(parseInt($(this).val())-1)]
     changeData(current, prev);
   });
-  changeData(dataByMonth["0"]);
+  changeData(dataByMonth["1"], dataByMonth["0"]);
 });
